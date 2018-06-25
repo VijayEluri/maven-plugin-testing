@@ -215,7 +215,8 @@ public class ArtifactStub
     /**
      * By default, do nothing.
      *
-     * @see org.apache.maven.artifact.Artifact#updateVersion(java.lang.String, org.apache.maven.artifact.repository.ArtifactRepository)
+     * @see org.apache.maven.artifact.Artifact#updateVersion(java.lang.String,
+     *      org.apache.maven.artifact.repository.ArtifactRepository)
      */
     public void updateVersion( String string, ArtifactRepository artifactRepository )
     {

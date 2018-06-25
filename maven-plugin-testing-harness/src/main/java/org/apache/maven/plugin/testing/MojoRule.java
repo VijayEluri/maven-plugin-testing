@@ -48,10 +48,9 @@ import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
 /**
- * {@link TestRule} for usage with Junit-4.10ff. This is just a wrapper for an embedded 
- * {@link AbstractMojoTestCase}, so all <tt>protected</tt> methods of the TestCase are 
- * exhibited as <tt>public</tt> in the rule. You may annotate single tests methods with 
- * {@link WithoutMojo} to prevent the rule from firing.
+ * {@link TestRule} for usage with Junit-4.10ff. This is just a wrapper for an embedded {@link AbstractMojoTestCase}, so
+ * all <tt>protected</tt> methods of the TestCase are exhibited as <tt>public</tt> in the rule. You may annotate single
+ * tests methods with {@link WithoutMojo} to prevent the rule from firing.
  *
  * @author Mirko Friedenhagen
  * @version $Id$
@@ -61,34 +60,37 @@ public class MojoRule
     implements TestRule
 {
     private final AbstractMojoTestCase testCase;
-    
-    public MojoRule() 
+
+    public MojoRule()
     {
-        this( new AbstractMojoTestCase() {} );
+        this( new AbstractMojoTestCase()
+        {
+        } );
     }
 
-    public MojoRule(AbstractMojoTestCase testCase)
+    public MojoRule( AbstractMojoTestCase testCase )
     {
         this.testCase = testCase;
     }
 
     /**
-     * May be overridden in the implementation to do stuff <em>after</em> the embedded test case 
-     * is set up but <em>before</em> the current test is actually run.
+     * May be overridden in the implementation to do stuff <em>after</em> the embedded test case is set up but
+     * <em>before</em> the current test is actually run.
      *
      * @throws Throwable
      */
-    protected void before() throws Throwable
+    protected void before()
+        throws Throwable
     {
-        
+
     }
-    
+
     /**
      * May be overridden in the implementation to do stuff after the current test was run.
      */
-    protected void after() 
+    protected void after()
     {
-        
+
     }
 
     public InputStream getPublicDescriptorStream()
@@ -116,12 +118,12 @@ public class MojoRule
     {
         return testCase.setupContainerConfiguration();
     }
-    
+
     public PlexusContainer getContainer()
     {
         return testCase.getContainer();
-    }    
-    
+    }
+
     /**
      * Lookup the mojo leveraging the subproject pom
      *
@@ -179,7 +181,7 @@ public class MojoRule
     }
 
     public Mojo lookupMojo( String groupId, String artifactId, String version, String goal,
-                               PlexusConfiguration pluginConfiguration )
+                            PlexusConfiguration pluginConfiguration )
         throws Exception
     {
         return testCase.lookupMojo( groupId, artifactId, version, goal, pluginConfiguration );
@@ -232,9 +234,8 @@ public class MojoRule
     }
 
     /**
-     * Convenience method to obtain the value of a variable on a mojo that might not have a getter.
-     *
-     * NOTE: the caller is responsible for casting to to what the desired type is.
+     * Convenience method to obtain the value of a variable on a mojo that might not have a getter. NOTE: the caller is
+     * responsible for casting to to what the desired type is.
      *
      * @param object
      * @param variable
@@ -248,9 +249,8 @@ public class MojoRule
     }
 
     /**
-     * Convenience method to obtain all variables and values from the mojo (including its superclasses)
-     *
-     * Note: the values in the map are of type Object so the caller is responsible for casting to desired types.
+     * Convenience method to obtain all variables and values from the mojo (including its superclasses) Note: the values
+     * in the map are of type Object so the caller is responsible for casting to desired types.
      *
      * @param object
      * @return map of variable names and values
@@ -262,9 +262,8 @@ public class MojoRule
     }
 
     /**
-     * Convenience method to obtain all variables and values from the mojo (including its superclasses)
-     *
-     * Note: the values in the map are of type Object so the caller is responsible for casting to desired types.
+     * Convenience method to obtain all variables and values from the mojo (including its superclasses) Note: the values
+     * in the map are of type Object so the caller is responsible for casting to desired types.
      *
      * @param clazz
      * @param object
@@ -291,28 +290,30 @@ public class MojoRule
     }
 
     @Override
-    public Statement apply(final Statement base, Description description) {
-        if (description.getAnnotation(WithoutMojo.class) != null) // skip.
+    public Statement apply( final Statement base, Description description )
+    {
+        if ( description.getAnnotation( WithoutMojo.class ) != null ) // skip.
         {
             return base;
         }
-        return new Statement() 
+        return new Statement()
         {
             @Override
-            public void evaluate() throws Throwable 
+            public void evaluate()
+                throws Throwable
             {
                 testCase.setUp();
                 before();
-                try 
+                try
                 {
                     base.evaluate();
-                } 
-                finally 
+                }
+                finally
                 {
                     after();
                 }
-            }            
-        };       
+            }
+        };
     }
 
     /**

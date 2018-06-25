@@ -70,7 +70,8 @@ public class StubArtifactRepository
 
     /**
      * @return the filename of this metadata on the local repository.
-     * @see org.apache.maven.artifact.repository.ArtifactRepository#pathOfLocalRepositoryMetadata(org.apache.maven.artifact.metadata.ArtifactMetadata, org.apache.maven.artifact.repository.ArtifactRepository)
+     * @see org.apache.maven.artifact.repository.ArtifactRepository#pathOfLocalRepositoryMetadata(org.apache.maven.artifact.metadata.ArtifactMetadata,
+     *      org.apache.maven.artifact.repository.ArtifactRepository)
      */
     public String pathOfLocalRepositoryMetadata( ArtifactMetadata metadata, ArtifactRepository repository )
     {

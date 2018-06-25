@@ -64,8 +64,7 @@ import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 
 /**
- * Very simple stub of <code>MavenProject</code> object, going to take a lot of work to make it
- * useful as a stub though.
+ * Very simple stub of <code>MavenProject</code> object, going to take a lot of work to make it useful as a stub though.
  *
  * @author jesse
  * @version $Id$
@@ -184,8 +183,8 @@ public class MavenProjectStub
      * Loads the model for this stub from the specified POM. For convenience, any checked exception caused by I/O or
      * parser errors will be wrapped into an unchecked exception.
      * 
-     * @param pomFile The path to the POM file to load, must not be <code>null</code>. If this path is relative, it
-     *            is resolved against the return value of {@link #getBasedir()}.
+     * @param pomFile The path to the POM file to load, must not be <code>null</code>. If this path is relative, it is
+     *            resolved against the return value of {@link #getBasedir()}.
      */
     protected void readModel( File pomFile )
     {
@@ -1346,7 +1345,8 @@ public class MavenProjectStub
     /**
      * By default, return <code>null</code>.
      *
-     * @see org.apache.maven.project.MavenProject#getGoalConfiguration(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+     * @see org.apache.maven.project.MavenProject#getGoalConfiguration(java.lang.String, java.lang.String,
+     *      java.lang.String, java.lang.String)
      */
     public Xpp3Dom getGoalConfiguration( String string, String string1, String string2, String string3 )
     {
@@ -1356,7 +1356,8 @@ public class MavenProjectStub
     /**
      * By default, return <code>null</code>.
      *
-     * @see org.apache.maven.project.MavenProject#getReportConfiguration(java.lang.String, java.lang.String, java.lang.String)
+     * @see org.apache.maven.project.MavenProject#getReportConfiguration(java.lang.String, java.lang.String,
+     *      java.lang.String)
      */
     public Xpp3Dom getReportConfiguration( String string, String string1, String string2 )
     {
@@ -1454,9 +1455,11 @@ public class MavenProjectStub
     /**
      * By default, return <code>Collections.EMPTY_SET</code>.
      *
-     * @see org.apache.maven.project.MavenProject#createArtifacts(org.apache.maven.artifact.factory.ArtifactFactory, java.lang.String, org.apache.maven.artifact.resolver.filter.ArtifactFilter)
+     * @see org.apache.maven.project.MavenProject#createArtifacts(org.apache.maven.artifact.factory.ArtifactFactory,
+     *      java.lang.String, org.apache.maven.artifact.resolver.filter.ArtifactFilter)
      */
-    public Set<Artifact> createArtifacts( ArtifactFactory artifactFactory, String string, ArtifactFilter artifactFilter )
+    public Set<Artifact> createArtifacts( ArtifactFactory artifactFactory, String string,
+                                          ArtifactFilter artifactFilter )
     {
         return Collections.<Artifact>emptySet();
     }

@@ -242,8 +242,7 @@ public class ArtifactStubFactory
     {
         if ( workingDir == null )
         {
-            throw new IllegalArgumentException(
-                                                "The workingDir must be set." );
+            throw new IllegalArgumentException( "The workingDir must be set." );
         }
 
         String fileName = getFormattedFileName( artifact, false );
@@ -344,7 +343,7 @@ public class ArtifactStubFactory
 
     /**
      * @return a default set of release and snapshot <code>DefaultArtifact</code>, i.e.:
-     * <code>testGroupId:snapshot:jar:2.0-SNAPSHOT, testGroupId:release:jar:1.0</code>
+     *         <code>testGroupId:snapshot:jar:2.0-SNAPSHOT, testGroupId:release:jar:1.0</code>
      * @throws IOException if any
      * @see #getReleaseArtifact()
      * @see #getSnapshotArtifact()
@@ -360,7 +359,7 @@ public class ArtifactStubFactory
 
     /**
      * @return a default set of <code>DefaultArtifact</code>, i.e.:
-     * <code>g:provided:jar:1.0, g:compile:jar:1.0, g:system:jar:1.0, g:test:jar:1.0, g:runtime:jar:1.0</code>
+     *         <code>g:provided:jar:1.0, g:compile:jar:1.0, g:system:jar:1.0, g:test:jar:1.0, g:runtime:jar:1.0</code>
      * @throws IOException if any
      */
     public Set<Artifact> getScopedArtifacts()
@@ -377,7 +376,7 @@ public class ArtifactStubFactory
 
     /**
      * @return a set of <code>DefaultArtifact</code>, i.e.:
-     * <code>g:d:zip:1.0, g:a:war:1.0, g:b:jar:1.0, g:c:sources:1.0, g:e:rar:1.0</code>
+     *         <code>g:d:zip:1.0, g:a:war:1.0, g:b:jar:1.0, g:c:sources:1.0, g:e:rar:1.0</code>
      * @throws IOException if any
      */
     public Set<Artifact> getTypedArtifacts()
@@ -394,7 +393,7 @@ public class ArtifactStubFactory
 
     /**
      * @return a set of <code>DefaultArtifact</code>, i.e.:
-     * <code>g:c:jar:three:1.0, g:b:jar:two:1.0, g:d:jar:four:1.0, g:a:jar:one:1.0</code>
+     *         <code>g:c:jar:three:1.0, g:b:jar:two:1.0, g:d:jar:four:1.0, g:a:jar:one:1.0</code>
      * @throws IOException if any
      */
     public Set<Artifact> getClassifiedArtifacts()
@@ -410,7 +409,7 @@ public class ArtifactStubFactory
 
     /**
      * @return a set of <code>DefaultArtifact</code>, i.e.:
-     * <code>g:d:zip:1.0, g:a:war:1.0, g:b:jar:1.0, g:e:rar:1.0</code>
+     *         <code>g:d:zip:1.0, g:a:war:1.0, g:b:jar:1.0, g:e:rar:1.0</code>
      * @throws IOException if any
      */
     public Set<Artifact> getTypedArchiveArtifacts()
@@ -426,7 +425,7 @@ public class ArtifactStubFactory
 
     /**
      * @return a set of <code>DefaultArtifact</code>, i.e.:
-     * <code>g:one:jar:a:1.0, g:two:jar:a:1.0, g:four:jar:a:1.0, g:three:jar:a:1.0</code>
+     *         <code>g:one:jar:a:1.0, g:two:jar:a:1.0, g:four:jar:a:1.0, g:three:jar:a:1.0</code>
      * @throws IOException if any
      */
     public Set<Artifact> getArtifactArtifacts()
@@ -442,7 +441,7 @@ public class ArtifactStubFactory
 
     /**
      * @return a set of <code>DefaultArtifact</code>, i.e.:
-     * <code>one:group-one:jar:a:1.0, three:group-three:jar:a:1.0, four:group-four:jar:a:1.0,
+     *         <code>one:group-one:jar:a:1.0, three:group-three:jar:a:1.0, four:group-four:jar:a:1.0,
      * two:group-two:jar:a:1.0</code>
      * @throws IOException if any
      */

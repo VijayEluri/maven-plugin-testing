@@ -105,6 +105,7 @@ public class TestFileManager
         warnAboutCleanup = true;
     }
 
+    private static final long WAIT_20MS = 20L;
     /**
      * @return a temp dir
      */
@@ -112,7 +113,7 @@ public class TestFileManager
     {
         try
         {
-            Thread.sleep( 20 );
+            Thread.sleep( WAIT_20MS );
         }
         catch ( InterruptedException e )
         {

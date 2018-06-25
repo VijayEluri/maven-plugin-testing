@@ -84,14 +84,12 @@ import org.codehaus.plexus.util.xml.Xpp3DomBuilder;
 import com.google.inject.Module;
 
 /**
- * TODO: add a way to use the plugin POM for the lookup so that the user doesn't have to provide the a:g:v:goal
- * as the role hint for the mojo lookup.
- * TODO: standardize the execution of the mojo and looking at the results, but could simply have a template method
- * for verifying the state of the mojo post execution
- * TODO: need a way to look at the state of the mojo without adding getters, this could be where we finally specify
- * the expressions which extract values from the mojo.
- * TODO: create a standard directory structure for picking up POMs to make this even easier, we really just need a testing
- * descriptor and make this entirely declarative!
+ * TODO: add a way to use the plugin POM for the lookup so that the user doesn't have to provide the a:g:v:goal as the
+ * role hint for the mojo lookup. TODO: standardize the execution of the mojo and looking at the results, but could
+ * simply have a template method for verifying the state of the mojo post execution TODO: need a way to look at the
+ * state of the mojo without adding getters, this could be where we finally specify the expressions which extract values
+ * from the mojo. TODO: create a standard directory structure for picking up POMs to make this even easier, we really
+ * just need a testing descriptor and make this entirely declarative!
  *
  * @author jesse
  * @version $Id$
@@ -135,13 +133,13 @@ public abstract class AbstractMojoTestCase
     private PlexusContainer container;
 
     private Map<String, MojoDescriptor> mojoDescriptors;
-    
+
     /*
-     * for the harness I think we have decided against going the route of using the maven project builder.
-     * instead I think we are going to try and make an instance of the localrespository and assign that
-     * to either the project stub or into the mojo directly with injection...not sure yet though.
+     * for the harness I think we have decided against going the route of using the maven project builder. instead I
+     * think we are going to try and make an instance of the localrespository and assign that to either the project stub
+     * or into the mojo directly with injection...not sure yet though.
      */
-    //private MavenProjectBuilder projectBuilder;
+    // private MavenProjectBuilder projectBuilder;
 
     protected void setUp()
         throws Exception
@@ -160,10 +158,9 @@ public abstract class AbstractMojoTestCase
 
         PluginDescriptor pluginDescriptor = new PluginDescriptorBuilder().build( interpolationFilterReader );
 
-        Artifact artifact =
-            lookup( RepositorySystem.class ).createArtifact( pluginDescriptor.getGroupId(),
-                                                             pluginDescriptor.getArtifactId(),
-                                                             pluginDescriptor.getVersion(), ".jar" );
+        Artifact artifact = lookup( RepositorySystem.class ).createArtifact( pluginDescriptor.getGroupId(),
+                                                                             pluginDescriptor.getArtifactId(),
+                                                                             pluginDescriptor.getVersion(), ".jar" );
 
         artifact.setFile( getPluginArtifactFile() );
         pluginDescriptor.setPluginArtifact( artifact );
@@ -230,7 +227,7 @@ public abstract class AbstractMojoTestCase
         }
 
         // fallback to test project basedir if couldn't resolve relative to META-INF/maven/plugin.xml
-        if ( file == null || ! file.exists() )
+        if ( file == null || !file.exists() )
         {
             file = new File( getBasedir() );
         }
@@ -267,7 +264,7 @@ public abstract class AbstractMojoTestCase
         {
             e.printStackTrace();
             fail( "Failed to create plexus container." );
-        }   
+        }
     }
 
     /**
@@ -282,15 +279,18 @@ public abstract class AbstractMojoTestCase
     {
         ClassWorld classWorld = new ClassWorld( "plexus.core", Thread.currentThread().getContextClassLoader() );
 
-        ContainerConfiguration cc = new DefaultContainerConfiguration()
-          .setClassWorld( classWorld )
-          .setClassPathScanning( PlexusConstants.SCANNING_INDEX )
-          .setAutoWiring( true )
-          .setName( "maven" );      
+        // @formatter:off
+        ContainerConfiguration cc = //
+            new DefaultContainerConfiguration() //
+                                                .setClassWorld( classWorld ) //
+                                                .setClassPathScanning( PlexusConstants.SCANNING_INDEX ) //
+                                                .setAutoWiring( true ) //
+                                                .setName( "maven" );
+        // @formatter:on
 
         return cc;
     }
-    
+
     protected PlexusContainer getContainer()
     {
         if ( container == null )
@@ -299,8 +299,8 @@ public abstract class AbstractMojoTestCase
         }
 
         return container;
-    }    
-    
+    }
+
     /**
      * Lookup the mojo leveraging the subproject pom
      *
@@ -380,13 +380,9 @@ public abstract class AbstractMojoTestCase
     }
 
     /*
-     protected Mojo lookupMojo( String groupId, String artifactId, String version, String goal, File pom )
-     throws Exception
-     {
-     PlexusConfiguration pluginConfiguration = extractPluginConfiguration( artifactId, pom );
-
-     return lookupMojo( groupId, artifactId, version, goal, pluginConfiguration );
-     }
+     * protected Mojo lookupMojo( String groupId, String artifactId, String version, String goal, File pom ) throws
+     * Exception { PlexusConfiguration pluginConfiguration = extractPluginConfiguration( artifactId, pom ); return
+     * lookupMojo( groupId, artifactId, version, goal, pluginConfiguration ); }
      */
     /**
      * lookup the mojo while we have all of the relavent information
@@ -410,16 +406,16 @@ public abstract class AbstractMojoTestCase
         Mojo mojo = (Mojo) lookup( Mojo.ROLE, groupId + ":" + artifactId + ":" + version + ":" + goal );
 
         LoggerManager loggerManager = (LoggerManager) getContainer().lookup( LoggerManager.class );
-        
+
         Log mojoLogger = new DefaultLog( loggerManager.getLoggerForComponent( Mojo.ROLE ) );
 
         mojo.setLog( mojoLogger );
 
         if ( pluginConfiguration != null )
         {
-            /* requires v10 of plexus container for lookup on expression evaluator
-             ExpressionEvaluator evaluator = (ExpressionEvaluator) getContainer().lookup( ExpressionEvaluator.ROLE,
-                                                                                         "stub-evaluator" );
+            /*
+             * requires v10 of plexus container for lookup on expression evaluator ExpressionEvaluator evaluator =
+             * (ExpressionEvaluator) getContainer().lookup( ExpressionEvaluator.ROLE, "stub-evaluator" );
              */
             ExpressionEvaluator evaluator = new ResolverExpressionEvaluatorStub();
 
@@ -430,7 +426,6 @@ public abstract class AbstractMojoTestCase
     }
 
     /**
-     * 
      * @param project
      * @param goal
      * @return
@@ -444,7 +439,6 @@ public abstract class AbstractMojoTestCase
     }
 
     /**
-     * 
      * @param session
      * @param execution
      * @return
@@ -478,16 +472,16 @@ public abstract class AbstractMojoTestCase
 
         if ( mojoDescriptor.getComponentConfigurator() != null )
         {
-            configurator = getContainer().lookup( ComponentConfigurator.class, mojoDescriptor.getComponentConfigurator() );
-        }        
-        
+            configurator =
+                getContainer().lookup( ComponentConfigurator.class, mojoDescriptor.getComponentConfigurator() );
+        }
+
         configurator.configureComponent( mojo, pluginConfiguration, evaluator, getContainer().getContainerRealm() );
 
         return mojo;
     }
 
     /**
-     * 
      * @param project
      * @return
      * @since 2.0
@@ -504,7 +498,6 @@ public abstract class AbstractMojoTestCase
     }
 
     /**
-     * 
      * @param goal
      * @return
      * @since 2.0
@@ -512,13 +505,15 @@ public abstract class AbstractMojoTestCase
     protected MojoExecution newMojoExecution( String goal )
     {
         MojoDescriptor mojoDescriptor = mojoDescriptors.get( goal );
-        assertNotNull(String.format("The MojoDescriptor for the goal %s cannot be null.", goal),  mojoDescriptor );
+        assertNotNull( String.format( "The MojoDescriptor for the goal %s cannot be null.", goal ), mojoDescriptor );
         MojoExecution execution = new MojoExecution( mojoDescriptor );
         finalizeMojoConfiguration( execution );
         return execution;
     }
 
-    // copy&paste from org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator.finalizeMojoConfiguration(MojoExecution)
+    // copy&paste from
+    // org.apache.maven.lifecycle.internal
+    // .DefaultLifecycleExecutionPlanCalculator.finalizeMojoConfiguration(MojoExecution)
     private void finalizeMojoConfiguration( MojoExecution mojoExecution )
     {
         MojoDescriptor mojoDescriptor = mojoExecution.getMojoDescriptor();
@@ -529,7 +524,7 @@ public abstract class AbstractMojoTestCase
             executionConfiguration = new Xpp3Dom( "configuration" );
         }
 
-        Xpp3Dom defaultConfiguration = MojoDescriptorCreator.convert( mojoDescriptor );;
+        Xpp3Dom defaultConfiguration = MojoDescriptorCreator.convert( mojoDescriptor );
 
         Xpp3Dom finalConfiguration = new Xpp3Dom( "configuration" );
 
@@ -546,7 +541,8 @@ public abstract class AbstractMojoTestCase
 
                 Xpp3Dom parameterDefaults = defaultConfiguration.getChild( parameter.getName() );
 
-                parameterConfiguration = Xpp3Dom.mergeXpp3Dom( parameterConfiguration, parameterDefaults, Boolean.TRUE );
+                parameterConfiguration =
+                    Xpp3Dom.mergeXpp3Dom( parameterConfiguration, parameterDefaults, Boolean.TRUE );
 
                 if ( parameterConfiguration != null )
                 {
@@ -675,9 +671,8 @@ public abstract class AbstractMojoTestCase
     }
 
     /**
-     * Convenience method to obtain the value of a variable on a mojo that might not have a getter.
-     *
-     * NOTE: the caller is responsible for casting to to what the desired type is.
+     * Convenience method to obtain the value of a variable on a mojo that might not have a getter. NOTE: the caller is
+     * responsible for casting to to what the desired type is.
      *
      * @param object
      * @param variable
@@ -695,9 +690,8 @@ public abstract class AbstractMojoTestCase
     }
 
     /**
-     * Convenience method to obtain all variables and values from the mojo (including its superclasses)
-     *
-     * Note: the values in the map are of type Object so the caller is responsible for casting to desired types.
+     * Convenience method to obtain all variables and values from the mojo (including its superclasses) Note: the values
+     * in the map are of type Object so the caller is responsible for casting to desired types.
      *
      * @param object
      * @return map of variable names and values
@@ -709,9 +703,8 @@ public abstract class AbstractMojoTestCase
     }
 
     /**
-     * Convenience method to obtain all variables and values from the mojo (including its superclasses)
-     *
-     * Note: the values in the map are of type Object so the caller is responsible for casting to desired types.
+     * Convenience method to obtain all variables and values from the mojo (including its superclasses) Note: the values
+     * in the map are of type Object so the caller is responsible for casting to desired types.
      *
      * @param clazz
      * @param object
@@ -760,9 +753,8 @@ public abstract class AbstractMojoTestCase
     }
 
     /**
-     * sometimes the parent element might contain the correct value so generalize that access
-     *
-     * TODO find out where this is probably done elsewhere
+     * sometimes the parent element might contain the correct value so generalize that access TODO find out where this
+     * is probably done elsewhere
      *
      * @param pluginPomDom
      * @param element
@@ -798,9 +790,7 @@ public abstract class AbstractMojoTestCase
     }
 
     /**
-     * We should make sure this is called in each method that makes use of the container,
-     * otherwise we throw ugly NPE's
-     *
+     * We should make sure this is called in each method that makes use of the container, otherwise we throw ugly NPE's
      * crops up when the subclassing code defines the setUp method but doesn't call super.setUp()
      *
      * @throws Exception
@@ -814,5 +804,5 @@ public abstract class AbstractMojoTestCase
         }
 
         throw new Exception( "container is null, make sure super.setUp() is called" );
-    }    
+    }
 }

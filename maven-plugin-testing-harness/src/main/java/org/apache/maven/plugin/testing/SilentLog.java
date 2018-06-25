@@ -23,8 +23,8 @@ import org.apache.maven.plugin.logging.Log;
 import org.codehaus.plexus.logging.Logger;
 
 /**
- * This logger implements both types of logs currently in use. It can be injected where needed
- * to turn off logs during testing where they aren't desired.
+ * This logger implements both types of logs currently in use. It can be injected where needed to turn off logs during
+ * testing where they aren't desired.
  *
  * @author <a href="mailto:brianf@apache.org">Brian Fox</a>
  * @version $Id$
@@ -329,6 +329,6 @@ public class SilentLog
     public void setThreshold( int threshold )
     {
         // TODO Auto-generated method stub
-        
+
     }
 }

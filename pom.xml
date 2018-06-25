@@ -25,7 +25,7 @@ under the License.
   <parent>
     <artifactId>maven-parent</artifactId>
     <groupId>org.apache.maven</groupId>
-    <version>24</version>
+    <version>31</version>
     <relativePath>../pom/maven/pom.xml</relativePath>
   </parent>
 
@@ -243,26 +243,6 @@ under the License.
       </plugins>
     </pluginManagement>
     <plugins>
-      <plugin><!-- TODO remove when upgrading to maven-parent 25 -->
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-enforcer-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>enforce-bytecode-version</id>
-            <goals>
-              <goal>enforce</goal>
-            </goals>
-            <configuration>
-              <rules>
-                <enforceBytecodeVersion>
-                  <maxJdkVersion>${maven.compiler.target}</maxJdkVersion>
-                </enforceBytecodeVersion>
-              </rules>
-              <fail>true</fail>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
       <plugin>
         <artifactId>maven-site-plugin</artifactId>
         <inherited>false</inherited>

@@ -36,20 +36,22 @@ import org.junit.Test;
  * @version $Id$
  */
 public class MojoRuleTest
-    
+
 {
     private boolean beforeWasCalled = false;
 
     @Rule
-    public MojoRule rule = new MojoRule() {
+    public MojoRule rule = new MojoRule()
+    {
 
         @Override
-        protected void before() throws Throwable 
+        protected void before()
+            throws Throwable
         {
             beforeWasCalled = true;
-        }      
+        }
     };
-    
+
     private String pom;
 
     private Xpp3Dom pomDom;
@@ -62,20 +64,9 @@ public class MojoRuleTest
         throws Exception
     {
 
-        pom =
-            "<project>" +
-                "<build>" +
-                "<plugins>" +
-                "<plugin>" +
-                "<artifactId>maven-simple-plugin</artifactId>" +
-                "<configuration>" +
-                "<keyOne>valueOne</keyOne>" +
-                "<keyTwo>valueTwo</keyTwo>" +
-                "</configuration>" +
-                "</plugin>" +
-                "</plugins>" +
-                "</build>" +
-                "</project>";
+        pom = "<project>" + "<build>" + "<plugins>" + "<plugin>" + "<artifactId>maven-simple-plugin</artifactId>"
+            + "<configuration>" + "<keyOne>valueOne</keyOne>" + "<keyTwo>valueTwo</keyTwo>" + "</configuration>"
+            + "</plugin>" + "</plugins>" + "</build>" + "</project>";
 
         pomDom = Xpp3DomBuilder.build( new StringReader( pom ) );
 
@@ -129,10 +120,10 @@ public class MojoRuleTest
     /**
      * @throws Exception if any
      */
-     @Test
-     public void testVariableAccessWithoutGetter2()
+    @Test
+    public void testVariableAccessWithoutGetter2()
         throws Exception
-     {
+    {
         SimpleMojo mojo = new SimpleMojo();
 
         mojo = (SimpleMojo) rule.configureMojo( mojo, pluginConfiguration );
@@ -169,7 +160,7 @@ public class MojoRuleTest
         assertFalse( "before executed although WithMojo annotation was added", beforeWasCalled );
     }
 
-    @Test    
+    @Test
     public void testWithRuleWrapper()
         throws Exception
     {

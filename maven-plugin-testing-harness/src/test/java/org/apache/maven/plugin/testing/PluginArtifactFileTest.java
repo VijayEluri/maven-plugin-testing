@@ -28,7 +28,7 @@ public class PluginArtifactFileTest
     extends AbstractMojoTestCase
 {
     private static final String FS = System.getProperty( "file.separator" );
-    
+
     public void testArtifact()
         throws Exception
     {
